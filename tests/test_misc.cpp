@@ -43,9 +43,9 @@ TEST_CASE("level_to_string_view", "[convert_to_string_view]") {
     REQUIRE(spdlog::level::to_string_view(spdlog::level::trace) == "trace");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::debug) == "debug");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::info) == "info");
-    REQUIRE(spdlog::level::to_string_view(spdlog::level::warn) == "warning");
+    REQUIRE(spdlog::level::to_string_view(spdlog::level::warn) == "alert");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::err) == "error");
-    REQUIRE(spdlog::level::to_string_view(spdlog::level::critical) == "critical");
+    REQUIRE(spdlog::level::to_string_view(spdlog::level::critical) == "mayday");
     REQUIRE(spdlog::level::to_string_view(spdlog::level::off) == "off");
 }
 
@@ -53,9 +53,9 @@ TEST_CASE("to_short_c_str", "[convert_to_short_c_str]") {
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::trace)) == "T");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::debug)) == "D");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::info)) == "I");
-    REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::warn)) == "W");
+    REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::warn)) == "A");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::err)) == "E");
-    REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::critical)) == "C");
+    REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::critical)) == "M");
     REQUIRE(std::string(spdlog::level::to_short_c_str(spdlog::level::off)) == "O");
 }
 
@@ -63,11 +63,12 @@ TEST_CASE("to_level_enum", "[convert_to_level_enum]") {
     REQUIRE(spdlog::level::from_str("trace") == spdlog::level::trace);
     REQUIRE(spdlog::level::from_str("debug") == spdlog::level::debug);
     REQUIRE(spdlog::level::from_str("info") == spdlog::level::info);
-    REQUIRE(spdlog::level::from_str("warning") == spdlog::level::warn);
+    REQUIRE(spdlog::level::from_str("alert") == spdlog::level::warn);
     REQUIRE(spdlog::level::from_str("warn") == spdlog::level::warn);
     REQUIRE(spdlog::level::from_str("error") == spdlog::level::err);
-    REQUIRE(spdlog::level::from_str("critical") == spdlog::level::critical);
-    REQUIRE(spdlog::level::from_str("off") == spdlog::level::off);
+    REQUIRE(spdlog::level::from_str("err") == spdlog::level::err);
+    REQUIRE(spdlog::level::from_str("mayday") == spdlog::level::critical);
+    REQUIRE(spdlog::level::from_str("OFF") == spdlog::level::off);
     REQUIRE(spdlog::level::from_str("null") == spdlog::level::off);
 }
 
