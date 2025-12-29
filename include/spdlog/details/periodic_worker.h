@@ -38,6 +38,7 @@ public:
             }
         });
     }
+    std::thread &get_thread() { return worker_thread_; }
     periodic_worker(const periodic_worker &) = delete;
     periodic_worker &operator=(const periodic_worker &) = delete;
     // stop the worker thread and join it
@@ -53,5 +54,5 @@ private:
 }  // namespace spdlog
 
 #ifdef SPDLOG_HEADER_ONLY
-    #include "periodic_worker-inl.h"
+#include "periodic_worker-inl.h"
 #endif
