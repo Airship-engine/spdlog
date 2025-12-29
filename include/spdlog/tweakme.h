@@ -102,7 +102,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Uncomment to customize level names (e.g. "MY TRACE")
 //
-#define SPDLOG_LEVEL_NAMES { "trace", "debug", "info", "alert", "error", "mayday", "off" }
+// #define SPDLOG_LEVEL_NAMES { "trace", "debug", "info", "alert", "error", "mayday", "off" }
+//
+// For C++17 use string_view_literals:
+//
+#include <string_view>
+using namespace std::string_view_literals;
+#define SPDLOG_LEVEL_NAMES { "trace"sv, "debug"sv, "info"sv, "alert"sv, "error"sv, "mayday"sv, "off"sv }
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -123,7 +129,11 @@
 // Uncomment and set to compile time level with zero cost (default is INFO).
 // Macros like SPDLOG_DEBUG(..), SPDLOG_INFO(..)  will expand to empty statements if not enabled
 //
-// #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_INFO
+#ifdef NDEBUG
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_OFF
+#else
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_DEBUG
+#endif
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
