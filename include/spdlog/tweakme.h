@@ -129,10 +129,12 @@ using namespace std::string_view_literals;
 // Uncomment and set to compile time level with zero cost (default is INFO).
 // Macros like SPDLOG_DEBUG(..), SPDLOG_INFO(..)  will expand to empty statements if not enabled
 //
+#ifndef SPDLOG_ACTIVE_LEVEL
 #ifdef NDEBUG
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_OFF
 #else
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_DEBUG
+#endif
 #endif
 ///////////////////////////////////////////////////////////////////////////////
 
